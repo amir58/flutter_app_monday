@@ -1,28 +1,105 @@
+import 'dart:io';
+
 void main() {
+  // Session 2
 
-  print(1);
-  print(2.5);
-  print('amir');
+  print("Enter number one : ");
 
-  // data types : String , int , double , bool ( boolean )
-  // variables => dataType variableName = value ;
+  // alt + enter
+  String input = stdin.readLineSync();
 
-  String name = 'Amir Mohammed';
+  int numberOne = int.tryParse(input) ?? 1;
 
-  int floorNumber = 8 ;
+  print("Enter number two : ");
 
-  bool isWorking = true;
+  String input2 = stdin.readLineSync();
 
-  print(name);
-  print(floorNumber);
-  print(isWorking);
+  int numberTwo = int.tryParse(input2) ?? 1;
 
-  // naming => a-z , $ , _
+  print("Result + : ${numberOne + numberTwo}");
+  print("Result - : ${numberOne - numberTwo}");
+  print("Result * : ${numberOne * numberTwo}");
+  print("Result / : ${numberOne / numberTwo}");
+  print("Result / : ${numberOne % numberTwo}");
 
-  print('My name is ' + name);
-  print('My name is $name');
+  print("- - - - - - - - - - - -");
+  // increment ++
+  // decrement --
 
-  // print("My name is : " + name + " , is working : " + isWorking + " , working in floor number " + floorNumber);
-  print('My name is : $name , is working : $isWorking , working in floor number $floorNumber');
+  int number = 10;
+  print(number);
+
+  number++;
+  print(number);
+
+  number--;
+  print(number);
+
+  print("- - - - - - - - - - - -");
+  // < , > , <= , >= , == , !=
+
+  print(10 < 20);
+  print(20 > 30);
+  print(20 <= 25);
+  print(30 >= 30);
+  print(5 == 5);
+  print(6 == 7);
+  print(5 != 5);
+  print(6 != 7);
+
+  print("- - - - - - - - - - - - -");
+  // is , is!
+  String name = "amir";
+
+  print(name is String);
+  print(name is int);
+  print(name is! String);
+
+  print("- - - - - - - - - - - - - -");
+
+  // += , -= , *= , /= , %= , ??=
+
+  int myNumber = 10;
+
+  myNumber = myNumber + 5;
+  print(myNumber);
+
+  myNumber += 5;
+  print(myNumber);
+
+  myNumber *= 5 ;
+  print(myNumber);
+
+  String myName;
+
+  print(myName);
+
+  myName ??= "Ahmed";
+
+  print(myName);
+
+  myName ??= "Mohammed";
+
+  print(myName);
+
+  print("- - - - - - - - - - - - - - -");
+  // && , || , ! , ? : , ??
+
+  print(!true);
+
+  print(!false);
+
+  bool r = !(5 > 10);
+  print(r);
+
+  print(5 > 10 && 7 > 6 && 1 > 2);
+  print(5 > 10 || 7 > 6 || 1 > 2);
+
+  int x = 20;
+  int y = 11;
+
+  String z = x > y ? "X > Y" : "X < Y";
+
+  print(z);
 
 }
