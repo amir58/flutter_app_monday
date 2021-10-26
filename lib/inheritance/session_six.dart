@@ -1,7 +1,12 @@
 import 'package:flutter_app_monday/inheritance/person.dart';
 import 'package:flutter_app_monday/inheritance/student.dart';
 
-void main(){
+void main() {
+  // compileTime
+  const birthDay = "";
+
+  // runTime
+  final myBirthDay = getBirthDay();
 
   Person personOne = Person("1", "Amir", "Cairo", "011");
   personOne.printData();
@@ -11,5 +16,8 @@ void main(){
 
   Student studentOne = Student("3", "Mohamed", "Alex", "015", "20181425");
   studentOne.printData();
+}
 
+String getBirthDay() {
+  return "1/1/2020";
 }

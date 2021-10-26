@@ -16,7 +16,7 @@ void main(){
   User khaled = User("Khaled", "012", "Giza");
   // khaled.printUserData();
 
-  User youssef = User.name("Youssef");
+  User youssef = User.a("Youssef");
 
   String name1 = "youssef";
   String phone1 = "011";

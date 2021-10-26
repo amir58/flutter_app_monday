@@ -16,9 +16,7 @@ class User{
   //   printUserData();
   // }
 
-  User.name(String name){
-    this._name = name;
-  }
+  User.a(this._name);
 
   void printUserData(){
     print('Name : $_name');
