@@ -4,45 +4,84 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Amir App"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.favorite),
-            onPressed: () => print('Favorite pressed'),
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              print('Search pressed');
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: onMorePress,
-          ),
-        ],
-      ),
       drawer: Drawer(),
       endDrawer: Drawer(),
       floatingActionButton: FloatingActionButton(onPressed: () {}),
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: double.infinity,
+                child: Text(
+                  "Login Screen ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 22,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Forget password",
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                color: Colors.green,
+                child: Text("Login"),
+                textColor: Colors.white,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Does not have account ?"),
+                  Text("Sign Up",style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ), ),
+                ],
+              ),
 
-      body: Column(
-        children: [
-          Text(
-            "HelloWorld!",
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 22,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold
-            ),
+           ],
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Text("This is my first app")
-        ],
+        ),
       ),
     );
   }
