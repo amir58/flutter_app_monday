@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_monday/counter_screen.dart';
 import 'package:flutter_app_monday/listview_buuilder.dart';
 import 'package:flutter_app_monday/login_screen.dart';
 import 'package:flutter_app_monday/messenager_screen.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch : Colors.blue
       ),
-      home: MessengerScreen(),
+      home: SecondScreen(),
     );
   }
 }

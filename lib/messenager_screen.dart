@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_monday/user.dart';
 
 class MessengerScreen extends StatelessWidget {
   MessengerScreen({Key key}) : super(key: key);
+
+  List<MyUser> users = [
+    MyUser("Nada", "Where are you ?", true),
+    MyUser("Youssef", "How are you ?", true),
+    MyUser("Mai", "I'll attend online today", false),
+    MyUser("Somaya", "I'll coming", true),
+  ];
 
   String _url =
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Steve_Jobs_Headshot_2010-CROP2.jpg/1200px-Steve_Jobs_Headshot_2010-CROP2.jpg";
 
   @override
   Widget build(BuildContext context) {
+    users.add(MyUser("Amir", "Hello", false));
+
+    MyUser khalid = MyUser("Khalid", "HelloWorld!", false);
+    users.add(khalid);
+
     return Scaffold(
       // appBar: AppBar(
       //   elevation: 0,
@@ -32,9 +45,10 @@ class MessengerScreen extends StatelessWidget {
             buildSearch(),
             Expanded(child: ListView.builder(
               itemBuilder: (context, index) {
+                print('INDEX => $index');
                 return buildChatItem(index);
               },
-              itemCount: 1000,
+              itemCount: users.length,
             )),
             // Expanded(
             //   child: ListView(
@@ -57,9 +71,12 @@ class MessengerScreen extends StatelessWidget {
         ),
       )),
     );
+
   }
 
   Widget buildChatItem(int index) {
+    MyUser myUser = users[index]; // 0
+
     return Container(
       margin: EdgeInsets.all(10),
       child: Row(
@@ -75,18 +92,21 @@ class MessengerScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Amir ${++index}"),
+                Text(myUser.username),
                 Text(
-                  "Where are you ?Where are you ?Where are you ?",
+                  myUser.lastMessage,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
           ),
-          CircleAvatar(
-            backgroundColor: Colors.blue,
-            radius: 10,
+          Visibility(
+            visible: myUser.notSeen,
+            child: CircleAvatar(
+              backgroundColor: Colors.blue,
+              radius: 10,
+            ),
           ),
         ],
       ),
