@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_monday/forget_password_screen.dart';
+import 'package:flutter_app_monday/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -50,12 +52,17 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                "Forget password",
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ForgetPasswordScreen(),));
+                },
+                child: Text(
+                  "Forget password",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(
@@ -71,11 +78,16 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Does not have account ?"),
-                  Text("Sign Up",style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ), ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterScreen(),));
+                    },
+                    child: Text("Register",style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ), ),
+                  ),
                 ],
               ),
 

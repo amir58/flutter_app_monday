@@ -55,6 +55,7 @@ class _MySimpleListViewState extends State<MySimpleListView> {
 
               });
             },
+            
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
