@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components.dart';
+import '../components.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override

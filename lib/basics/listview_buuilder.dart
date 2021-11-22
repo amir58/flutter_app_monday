@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/user.dart';
+import 'package:flutter_app_monday/basics/user.dart';
 
 class MySimpleListView extends StatefulWidget {
   MySimpleListView({Key key}) : super(key: key);

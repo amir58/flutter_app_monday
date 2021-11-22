@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/counter_screen.dart';
-import 'package:flutter_app_monday/listview_buuilder.dart';
-import 'package:flutter_app_monday/login_screen.dart';
-import 'package:flutter_app_monday/messenager_screen.dart';
-import 'package:flutter_app_monday/persons_screen.dart';
-import 'package:flutter_app_monday/second_screen.dart';
-import 'package:flutter_app_monday/stack_screen.dart';
+import 'package:flutter_app_monday/basics/counter_screen.dart';
+import 'package:flutter_app_monday/basics/login_screen.dart';
+import 'package:flutter_app_monday/basics/messenager_screen.dart';
+import 'package:flutter_app_monday/basics/second_screen.dart';
+import 'package:flutter_app_monday/basics/stack_screen.dart';
+import 'package:flutter_app_monday/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch : Colors.blue
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 

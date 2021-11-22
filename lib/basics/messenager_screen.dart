@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/user.dart';
+import 'package:flutter_app_monday/basics/user.dart';
 
 class MessengerScreen extends StatelessWidget {
   MessengerScreen({Key key}) : super(key: key);

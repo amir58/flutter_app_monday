@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/forget_password_screen.dart';
-import 'package:flutter_app_monday/register_screen.dart';
+import 'package:flutter_app_monday/basics/forget_password_screen.dart';
+import 'package:flutter_app_monday/basics/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override

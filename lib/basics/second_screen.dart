@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/messenager_screen.dart';
+import 'package:flutter_app_monday/basics/messenager_screen.dart';
 
 class SecondScreen extends StatefulWidget {
   @override
@@ -251,8 +251,8 @@ class _SecondScreenState extends State<SecondScreen> {
               color: Colors.red,
               child: MaterialButton(
                 onPressed: () {
-                  // showCustomDialog();
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MessengerScreen(),));
+                  showCustomDialog();
+                  // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MessengerScreen(),));
                 },
                 child: Text(
                   "Calculate",
