@@ -3,7 +3,7 @@ import 'package:flutter_app_monday/components.dart';
 import 'package:flutter_app_monday/done_tasks_screen.dart';
 
 import 'active_tasks_screen.dart';
-import 'basics/archive_tasks_screen.dart';
+import 'archive_tasks_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -87,6 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   var titleController = TextEditingController();
+  var dateController = TextEditingController();
+  var timeController = TextEditingController();
 
   buildBottomSheetItem() {
     return Container(
@@ -97,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
         myTextFormField(controller: titleController, validator: (value) => null, label: "Title", prefixIcon: Icons.title),
         SizedBox(height: 10,),
-        myTextFormField(controller: titleController, validator: (value) => null, label: "Date", prefixIcon: Icons.date_range),
+        myTextFormField(controller: dateController, validator: (value) => null, label: "Date", prefixIcon: Icons.date_range),
         SizedBox(height: 10,),
-        myTextFormField(controller: titleController, validator: (value) => null, label: "Time", prefixIcon: Icons.timer_outlined),
+        myTextFormField(controller: timeController, validator: (value) => null, label: "Time", prefixIcon: Icons.timer_outlined),
       ],),
     );
   }

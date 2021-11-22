@@ -22,7 +22,6 @@ Widget myTextFormField({
   );
 }
 
-
 Widget tasksListView(){
   return ListView.builder(
     itemCount: 10,
