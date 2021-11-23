@@ -7,9 +7,11 @@ Widget myTextFormField({
   TextInputType textInputType = TextInputType.text,
   @required String label,
   @required IconData prefixIcon,
-  Widget suffixIcon
+  Widget suffixIcon,
+  GestureTapCallback onTap,
 }) {
   return TextFormField(
+    onTap: onTap,
     validator: validator,
     obscureText: passwordVisible,
     controller: controller,
