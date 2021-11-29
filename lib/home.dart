@@ -5,6 +5,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'active_tasks_screen.dart';
 import 'archive_tasks_screen.dart';
+import 'data.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,6 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int bottomNavigationIndex = 0;
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  var formKey = GlobalKey<FormState>();
+
   List<String> titles = ["Active", "Done", "Archive"];
   List<Widget> screens = [
     ActiveTasksScreen(),
@@ -22,8 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
     ArchiveTasksScreen(),
   ];
 
+  bool isBottomSheetExpanded = false;
 
-  _HomeScreenState(){
+  _HomeScreenState() {
     print('Constructor run');
   }
 
@@ -47,13 +51,35 @@ class _HomeScreenState extends State<HomeScreen> {
         visible: (bottomNavigationIndex == 0),
         child: FloatingActionButton(
           onPressed: () {
-            // showSimpleBottomSheet();
+            if (isBottomSheetExpanded) {
+              if (formKey.currentState.validate()) {
+                String title = titleController.text;
+                String date = dateController.text;
+                String time = timeController.text;
 
-            scaffoldKey.currentState
-                .showBottomSheet((context) => buildBottomSheetItem());
-            insertTask();
+                insertTask(title: title, date: date, time: time);
+                Navigator.of(context).pop();
+                isBottomSheetExpanded = false;
+              }
+            } else {
+              scaffoldKey.currentState
+                  .showBottomSheet((context) => buildBottomSheetItem())
+                  .closed
+                  .then((value) {
+                isBottomSheetExpanded = false;
+
+                titleController.text = "";
+                dateController.text = "";
+                timeController.text = "";
+
+                setState(() {});
+              });
+
+              isBottomSheetExpanded = true;
+              setState(() {});
+            }
           },
-          child: Icon(Icons.add),
+          child: isBottomSheetExpanded ? Icon(Icons.add) : Icon(Icons.edit),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -110,45 +136,55 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: EdgeInsets.all(10),
       width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          myTextFormField(
-              controller: titleController,
-              validator: (value) => null,
-              label: "Title",
-              prefixIcon: Icons.title),
-          SizedBox(
-            height: 10,
-          ),
-          myTextFormField(
-            controller: dateController,
-            validator: (value) => null,
-            label: "Date",
-            prefixIcon: Icons.date_range,
-            textInputType: TextInputType.none,
-            onTap: () {
-              print('Date tapped');
-              _pickDateDialog();
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          myTextFormField(
-            controller: timeController,
-            validator: (value) => null,
-            label: "Time",
-            prefixIcon: Icons.timer_outlined,
-            textInputType: TextInputType.none,
-            onTap: () {
-              print('Time tapped');
-              _pickTimeDialog();
-            },
-          ),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            myTextFormField(
+                controller: titleController,
+                validator: (value) => validator(value),
+                label: "Title",
+                prefixIcon: Icons.title),
+            SizedBox(
+              height: 10,
+            ),
+            myTextFormField(
+              controller: dateController,
+              validator: (value) => validator(value),
+              label: "Date",
+              prefixIcon: Icons.date_range,
+              textInputType: TextInputType.none,
+              onTap: () {
+                print('Date tapped');
+                _pickDateDialog();
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            myTextFormField(
+              controller: timeController,
+              validator: (value) => validator(value),
+              label: "Time",
+              prefixIcon: Icons.timer_outlined,
+              textInputType: TextInputType.none,
+              onTap: () {
+                print('Time tapped');
+                _pickTimeDialog();
+              },
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  String validator(String value) {
+    if (value.isEmpty) {
+      return "Required";
+    }
+    return null;
   }
 
   void _pickDateDialog() {
@@ -222,6 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onOpen: (db) {
         print('onOpen');
         database = db;
+        getTasks();
       },
     );
   }
@@ -233,16 +270,29 @@ class _HomeScreenState extends State<HomeScreen> {
           'INSERT INTO Tasks(title, date, time, status) VALUES("$title", "$date", "$time", "active")');
       print('RAW INSERT ID => $id');
       getTasks();
-
     });
+
   }
 
   void getTasks() async {
-    List<Map> list = await database.rawQuery('SELECT * FROM Tasks');
-    print(list);
-    list.forEach((element) {
-      print(element);
-    });
+    activeTasks = await database.rawQuery('SELECT * FROM Tasks WHERE status = "active"');
+    doneTasks = await database.rawQuery('SELECT * FROM Tasks WHERE status = "done"');
+    archiveTasks = await database.rawQuery('SELECT * FROM Tasks WHERE status = "archive"');
+
+    // await database.rawQuery('SELECT * FROM Tasks').then((value) {
+    //       value.forEach((element) {
+    //           if(element['status'] == "active"){
+    //             activeTasks.add(element);
+    //           }
+    //           else if(element['status'] == "done"){
+    //             doneTasks.add(element);
+    //           }
+    //           else if(element['status'] == "archive"){
+    //             archiveTasks.add(element);
+    //           }
+    //       });
+    // });
+
   }
 
   void deleteTask({int taskId}) async {
@@ -250,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void updateTask({String status, int taskId}) async {
-    await database.rawUpdate('UPDATE Tasks SET status = ? WHERE id = ?', ['$status', taskId]);
+    await database.rawUpdate(
+        'UPDATE Tasks SET status = ? WHERE id = ?', ['$status', taskId]);
   }
-
 }

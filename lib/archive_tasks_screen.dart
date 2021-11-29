@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_monday/components.dart';
+import 'package:flutter_app_monday/data.dart';
 
 class ArchiveTasksScreen extends StatefulWidget {
   @override
@@ -9,6 +10,6 @@ class ArchiveTasksScreen extends StatefulWidget {
 class _ArchiveTasksScreenState extends State<ArchiveTasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return tasksListView();
+    return tasksListView(archiveTasks);
   }
 }

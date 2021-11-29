@@ -24,9 +24,9 @@ Widget myTextFormField({
   );
 }
 
-Widget tasksListView(){
+Widget tasksListView(List<Map<dynamic, dynamic>> list){
   return ListView.builder(
-    itemCount: 10,
+    itemCount: list.length,
     itemBuilder: (context, index) => Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
@@ -40,7 +40,7 @@ Widget tasksListView(){
             children: [
               Expanded(
                 child: Text(
-                  "Title ${++index}",
+                  "${list[index]['title']}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
@@ -61,12 +61,12 @@ Widget tasksListView(){
           Row(
             children: [
               Text(
-                "Date : 22/11/2021",
+                "Date : ${list[index]['date']}",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
               ),
               Spacer(),
               Text(
-                "Time 7:52 PM",
+                "Time ${list[index]['time']}",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
               ),
 
