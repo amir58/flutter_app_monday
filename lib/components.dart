@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_monday/bloc/tasks_cubit.dart';
 
 Widget myTextFormField({
   @required TextEditingController controller,
@@ -24,56 +25,75 @@ Widget myTextFormField({
   );
 }
 
-Widget tasksListView(List<Map<dynamic, dynamic>> list){
+Widget tasksListView(List<Map<dynamic, dynamic>> list, TasksCubit cubit){
+
   return ListView.builder(
     itemCount: list.length,
-    itemBuilder: (context, index) => Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "${list[index]['title']}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+    itemBuilder: (context, index) => Dismissible(
+      key: Key(list[index]["id"].toString()),
+      onDismissed: (direction) {
+        if(direction == DismissDirection.endToStart){
+
+        }
+        if(direction == DismissDirection.startToEnd){
+
+        }
+
+        cubit.deleteTask(taskId: list[index]['id']);
+
+      },
+      child: Container(
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "${list[index]['title']}",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                 ),
-              ),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.done,
-                    color: Colors.blue,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.archive,
-                    color: Colors.blue,
-                  )),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                "Date : ${list[index]['date']}",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-              ),
-              Spacer(),
-              Text(
-                "Time ${list[index]['time']}",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-              ),
+                IconButton(
+                    onPressed: () {
+                      cubit.updateTask(status: "done",taskId: list[index]["id"]);
+                    },
+                    icon: Icon(
+                      Icons.done,
+                      color: Colors.blue,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      cubit.updateTask(status: "archive",taskId: list[index]["id"]);
+                    },
+                    icon: Icon(
+                      Icons.archive,
+                      color: Colors.blue,
+                    )),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "Date : ${list[index]['date']}",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                ),
+                Spacer(),
+                Text(
+                  "Time ${list[index]['time']}",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                ),
 
-            ],
-          ),
+              ],
+            ),
 
-        ],
+          ],
+        ),
       ),
     ),
   );

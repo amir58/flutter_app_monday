@@ -10,6 +10,6 @@ class DoneTasksScreen extends StatefulWidget {
 class _DoneTasksScreenState extends State<DoneTasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return tasksListView(doneTasks);
+    return tasksListView(doneTasks, null);
   }
 }

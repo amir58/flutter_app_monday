@@ -12,7 +12,7 @@ class ActiveTasksScreen extends StatefulWidget {
 class _ActiveTasksScreenState extends State<ActiveTasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return tasksListView(activeTasks);
+    return tasksListView(activeTasks, null);
   }
 
 }

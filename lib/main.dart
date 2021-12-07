@@ -6,6 +6,8 @@ import 'package:flutter_app_monday/basics/second_screen.dart';
 import 'package:flutter_app_monday/basics/stack_screen.dart';
 import 'package:flutter_app_monday/home.dart';
 
+import 'bloc/bloc_home.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch : Colors.blue
       ),
-      home: HomeScreen(),
+      home: BlocHomeScreen(),
     );
   }
 

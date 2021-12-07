@@ -10,6 +10,6 @@ class ArchiveTasksScreen extends StatefulWidget {
 class _ArchiveTasksScreenState extends State<ArchiveTasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return tasksListView(archiveTasks);
+    return tasksListView(archiveTasks, null);
   }
 }
