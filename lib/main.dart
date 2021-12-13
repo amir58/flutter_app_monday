@@ -5,6 +5,7 @@ import 'package:flutter_app_monday/basics/messenager_screen.dart';
 import 'package:flutter_app_monday/basics/second_screen.dart';
 import 'package:flutter_app_monday/basics/stack_screen.dart';
 import 'package:flutter_app_monday/home.dart';
+import 'package:flutter_app_monday/posts/posts_screen.dart';
 
 import 'bloc/bloc_home.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch : Colors.blue
       ),
-      home: BlocHomeScreen(),
+      home: PostsScreen(),
     );
   }
 
