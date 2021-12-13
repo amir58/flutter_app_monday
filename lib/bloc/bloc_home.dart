@@ -13,6 +13,7 @@ class BlocHomeScreen extends StatelessWidget {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var formKey = GlobalKey<FormState>();
   BuildContext context;
+  TasksCubit cubit;
 
   // @override
   // void initState() {
@@ -32,19 +33,14 @@ class BlocHomeScreen extends StatelessWidget {
         listener: (context, state) {
           print(state);
           print(state is BottomSheetChangeState);
-          if(state is BottomSheetChangeState){
-
+          if (state is BottomSheetChangeState) {
+          } else if (state is InsertTaskState) {
+          } else if (state is DeleteTaskState) {
+            snackBar();
           }
-          else if ( state is InsertTaskState){
-
-          }
-          else if ( state is DeleteTaskState){
-            
-          }
-
         },
         builder: (context, state) {
-          TasksCubit cubit = TasksCubit.get(context);
+          cubit = TasksCubit.get(context);
 
           return Scaffold(
             key: scaffoldKey,
@@ -55,6 +51,7 @@ class BlocHomeScreen extends StatelessWidget {
               visible: (cubit.bottomNavigationIndex == 0),
               child: FloatingActionButton(
                 onPressed: () {
+
                   if (cubit.isBottomSheetExpanded) {
                     if (formKey.currentState.validate()) {
                       String title = titleController.text;
@@ -70,8 +67,6 @@ class BlocHomeScreen extends StatelessWidget {
                         .showBottomSheet((context) => buildBottomSheetItem())
                         .closed
                         .then((value) {
-
-
                       titleController.text = "";
                       dateController.text = "";
                       timeController.text = "";
@@ -96,7 +91,6 @@ class BlocHomeScreen extends StatelessWidget {
                 onTap: (value) {
                   cubit.changeBottomNavigationState(value);
                   // setState(() {});
-
                 },
                 currentIndex: cubit.bottomNavigationIndex,
                 items: [
@@ -112,6 +106,22 @@ class BlocHomeScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  snackBar(){
+    final snackBar = SnackBar(
+      duration: Duration(seconds: 3),
+      content: Text('Task deleted'),
+      action: SnackBarAction(
+        label: 'Undo',
+        onPressed: () {
+          // Some code to undo the change.
+          cubit.undoDeletedTask();
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
   }
 
   var titleController = TextEditingController();
@@ -216,7 +226,4 @@ class BlocHomeScreen extends StatelessWidget {
     String time = "${realHour}";
     timeController.text = time;
   }
-
-
-
 }

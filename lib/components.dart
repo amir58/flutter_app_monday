@@ -39,7 +39,7 @@ Widget tasksListView(List<Map<dynamic, dynamic>> list, TasksCubit cubit){
 
         }
 
-        cubit.deleteTask(taskId: list[index]['id']);
+        cubit.deleteTask(task: list[index]);
 
       },
       child: Container(

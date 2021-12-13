@@ -19,7 +19,9 @@ class BottomNavigationChangeState extends TasksStates {}
 class BottomSheetChangeState extends TasksStates {}
 
 class InsertTaskState extends TasksStates {}
+
 class DeleteTaskState extends TasksStates {}
+
 class GetTasksState extends TasksStates {}
 
 class TasksCubit extends Cubit<TasksStates> {
@@ -46,8 +48,6 @@ class TasksCubit extends Cubit<TasksStates> {
     isBottomSheetExpanded = value;
     emit(BottomSheetChangeState());
   }
-
-
 
   // Open database
   // Insert records
@@ -81,11 +81,11 @@ class TasksCubit extends Cubit<TasksStates> {
     );
   }
 
-  void insertTask({String title, String date, String time}) async {
+  void insertTask({String title, String date, String time, String status = "active"}) async {
     // Insert some records in a transaction
     await database.transaction((txn) async {
       int id = await txn.rawInsert(
-          'INSERT INTO Tasks(title, date, time, status) VALUES("$title", "$date", "$time", "active")');
+          'INSERT INTO Tasks(title, date, time, status) VALUES("$title", "$date", "$time", "$status")');
       print('RAW INSERT ID => $id');
       getTasks();
     });
@@ -120,8 +120,12 @@ class TasksCubit extends Cubit<TasksStates> {
     // });
   }
 
-  void deleteTask({int taskId}) async {
-    await database.rawDelete('DELETE FROM Tasks WHERE id = ?', [taskId]);
+  Map<dynamic, dynamic> _deletedTask;
+
+  void deleteTask({Map<dynamic, dynamic> task}) async {
+    _deletedTask = task;
+
+    await database.rawDelete('DELETE FROM Tasks WHERE id = ?', [task['id']]);
     emit(DeleteTaskState());
     getTasks();
   }
@@ -131,5 +135,14 @@ class TasksCubit extends Cubit<TasksStates> {
         'UPDATE Tasks SET status = ? WHERE id = ?', ['$status', taskId]);
 
     getTasks();
+  }
+
+  void undoDeletedTask() {
+    insertTask(
+      title: _deletedTask['title'],
+      date: _deletedTask['date'],
+      time: _deletedTask['time'],
+      status: _deletedTask['status'],
+    );
   }
 }
