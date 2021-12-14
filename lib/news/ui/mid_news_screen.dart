@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_monday/news/models/business_news_screen.dart';
+import 'package:flutter_app_monday/news/ui/business_news_screen.dart';
 import 'package:flutter_app_monday/news/models/news_response.dart';
-import 'package:flutter_app_monday/news/models/science_news_screen.dart';
-import 'package:flutter_app_monday/news/models/technology_news_screen.dart';
-import 'package:flutter_app_monday/news/sports_news_screen.dart';
-import 'package:flutter_app_monday/news/sports_news_screen.dart';
+import 'package:flutter_app_monday/news/ui/science_news_screen.dart';
+import 'package:flutter_app_monday/news/ui/technology_news_screen.dart';
+import 'package:flutter_app_monday/news/ui/sports_news_screen.dart';
+import 'package:flutter_app_monday/news/ui/sports_news_screen.dart';
 
 class MidNewsScreen extends StatefulWidget {
   const MidNewsScreen({Key key}) : super(key: key);
