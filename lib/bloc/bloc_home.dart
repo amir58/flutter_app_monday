@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_monday/bloc/tasks_cubit.dart';
 import 'package:flutter_app_monday/components.dart';
-import 'package:flutter_app_monday/done_tasks_screen.dart';
+import 'package:flutter_app_monday/old/tasks/done_tasks_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../archive_tasks_screen.dart';
-import '../data.dart';
+import '../old/tasks/archive_tasks_screen.dart';
+import '../old/tasks/data.dart';
 import 'bloc_active_tasks_screen.dart';
 
 class BlocHomeScreen extends StatelessWidget {

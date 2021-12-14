@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../archive_tasks_screen.dart';
-import '../data.dart';
-import '../done_tasks_screen.dart';
+import '../old/tasks/archive_tasks_screen.dart';
+import '../old/tasks/data.dart';
+import '../old/tasks/done_tasks_screen.dart';
 import 'bloc_active_tasks_screen.dart';
 import 'bloc_archive_tasks_screen.dart';
 import 'bloc_done_tasks_screen.dart';

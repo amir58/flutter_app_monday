@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_monday/bloc/tasks_cubit.dart';
 import 'package:flutter_app_monday/components.dart';
-import 'package:flutter_app_monday/data.dart';
+import 'package:flutter_app_monday/old/tasks/data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlocDoneTasksScreen extends StatelessWidget {

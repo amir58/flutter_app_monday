@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_monday/components.dart';
-import 'package:flutter_app_monday/done_tasks_screen.dart';
+import 'package:flutter_app_monday/old/tasks/done_tasks_screen.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'active_tasks_screen.dart';
