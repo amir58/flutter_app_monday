@@ -10,13 +10,17 @@ Widget myTextFormField({
   @required IconData prefixIcon,
   Widget suffixIcon,
   GestureTapCallback onTap,
+  TextInputAction textInputAction,
+  ValueChanged<String> onFieldSubmitted
 }) {
   return TextFormField(
     onTap: onTap,
+    onFieldSubmitted: onFieldSubmitted,
     validator: validator,
     obscureText: passwordVisible,
     controller: controller,
     keyboardType: textInputType,
+    textInputAction: textInputAction,
     decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: label,
