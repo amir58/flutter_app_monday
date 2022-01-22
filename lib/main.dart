@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_monday/basics/counter_screen.dart';
@@ -5,6 +6,8 @@ import 'package:flutter_app_monday/basics/login_screen.dart';
 import 'package:flutter_app_monday/basics/messenager_screen.dart';
 import 'package:flutter_app_monday/basics/second_screen.dart';
 import 'package:flutter_app_monday/basics/stack_screen.dart';
+import 'package:flutter_app_monday/e/my_dio.dart';
+import 'package:flutter_app_monday/e/test.dart';
 import 'package:flutter_app_monday/news/bloc/app_cubit.dart';
 import 'package:flutter_app_monday/news/ui/mid_news_screen.dart';
 import 'package:flutter_app_monday/news/ui/sports_news_screen.dart';
@@ -15,7 +18,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/bloc_home.dart';
 import 'news/bloc/news_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await MyDio.init();
+
   runApp(MyApp());
 }
 
@@ -41,7 +48,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme(),
             darkTheme: darkTheme(),
             themeMode: AppCubit.get(context).themeMode,
-            home: MidNewsScreen(),
+            home: TestScreen(),
           );
         },
       ),
